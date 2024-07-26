@@ -8,12 +8,12 @@
   h-size: 0.5em,
   icon-factor: 1.2,
 ) = {
-      box(baseline: baseline, outset: (x: 0pt))[#image(
-          project-root + icon-path,
-          height: size * icon-factor,
-        )]
-      h(h-size)
-      box(outset: (y: 0pt), height: auto)[#text(size: size)[#txt]]
+  box(baseline: baseline, outset: (x: 0pt))[#image(
+      project-root + icon-path,
+      height: size * icon-factor,
+    )]
+  h(h-size)
+  box(outset: (y: 0pt), height: auto)[#text(size: size)[#txt]]
 }
 
 #let emphasize(color: default-config.emphasize-color, content) = {
@@ -26,11 +26,15 @@
 }
 
 #let boldline(v-size: default-config.bold-line-space) = {
-  block(below: 0pt, above:0pt, {
-    v(v-size * 0.1)
-    line(length: 100%, stroke: (paint: black, thickness: 1.3pt))
-    v(v-size * 0.7)
-  })
+  block(
+    below: 0pt,
+    above: 0pt,
+    {
+      v(v-size * 0.1)
+      line(length: 100%, stroke: (paint: black, thickness: 1.3pt))
+      v(v-size * 0.7)
+    },
+  )
 }
 
 #let thinline(v-size: default-config.thin-line-space) = {
@@ -63,7 +67,7 @@
     #linebreak()
     #box(
       align(center)[
-        #info.phone 
+        #info.phone
       ],
     )
   ]
