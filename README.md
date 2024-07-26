@@ -2,7 +2,8 @@
 
 ```shell
 # Add this project as a git submodule
-git submodule add --recursive https://github.com/qujihan/typst-cv-template.git
+git submodule add https://github.com/qujihan/typst-cv-template.git typst-cv-template
+git submodule update --init --recursive
 
 # Real-time preview
 python typst-cv-template/op.py w

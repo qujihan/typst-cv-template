@@ -2,7 +2,8 @@
 
 ```shell
 # 将此项目作为git子模块添加
-git submodule add --recursive https://github.com/qujihan/typst-cv-template.git
+git submodule add https://github.com/qujihan/typst-cv-template.git typst-cv-template
+git submodule update --init --recursive
 
 # 实时预览
 python typst-cv-template/op.py w
