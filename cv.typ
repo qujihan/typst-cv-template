@@ -1,30 +1,7 @@
 #import "utils.typ": *
+#import "params.typ": *
 
-#let cv(
-  info: (),
-  // global
-  font-en: "Lora",
-  font-zh: "Source Han Serif SC",
-  font-size: 10pt,
-  font-weight: 200,
-  // info
-  info-name-size:2em,
-  info-other-size:0.75em,
-  // icon-text 
-  icon-text-size:1em,
-  icon-text-baseline:0.5em,
-  // boldline/thinline-space
-  boldline-space: 6pt,
-  thinline-space:4pt,
-
-  title-color: rgb("#000000"),
-  head-color: rgb("#181818"),
-  subtitile-color: rgb("#1f1f1f"),
-  content-color: rgb("#222222"),
-  // 
-  emphasize-color: rgb("#00bbbb"),
-  body,
-) = {
+#let cv(info, body) = {
   set document(author: info.name, title: info.name)
 
   set page(
@@ -34,11 +11,15 @@
 
   set par(
     justify: true,
-    leading: 0.75em,
+    leading: 0.8em,
     linebreaks: "optimized",
   )
 
-  set text(font: (font-en, font-zh), size: font-size, weight: font-weight)
+  set text(
+    font: (default-config.font-en, default-config.font-zh),
+    size: default-config.font-size,
+    weight: default-config.font-weight,
+  )
 
   body
 }

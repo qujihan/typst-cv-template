@@ -1,61 +1,71 @@
-#let project-root = "../"
+#import "params.typ": *
 
-#let template-root = "./"
-
-#let config-file-name = "cvconfig.json"
-
-#let get-config(attr) = {
-  let current-file = config-file-name
-  let parent-file = "../" + config-file-name
-  if attr in json(parent-file) {
-     return json(parent-file).at(attr)
-  }
-  if attr in json(current-file) {
-    return json(current-file).at(attr)
-  }
-  return ""
+#let icon-text-box(
+  icon-path,
+  txt,
+  size: 16pt,
+  baseline: 3.5em,
+  h-size: 0.5em,
+  icon-factor: 1.2,
+) = {
+      box(baseline: baseline, outset: (x: 0pt))[#image(
+          project-root + icon-path,
+          height: size * icon-factor,
+        )]
+      h(h-size)
+      box(outset: (y: 0pt), height: auto)[#text(size: size)[#txt]]
 }
 
-#let icon-text-box(icon-path, text, size: 16pt, baseline: 0pt) = {
-  box(baseline: baseline)[#image(project-root + icon-path, height: size)]
-  box(baseline: baseline)[#text]
-}
-
-#let emphasize(content) = {
+#let emphasize(color: default-config.emphasize-color, content) = {
   highlight(
-    fill: black,
+    fill: color,
     top-edge: 0.2pt,
     bottom-edge: -1.5pt,
     content,
   )
 }
 
-#let boldline() = {
-  v(6pt)
-  line(length: 100%, stroke: (paint: black, thickness: 1.3pt))
-  v(6pt)
+#let boldline(v-size: default-config.bold-line-space) = {
+  block(below: 0pt, above:0pt, {
+    v(v-size * 0.1)
+    line(length: 100%, stroke: (paint: black, thickness: 1.3pt))
+    v(v-size * 0.7)
+  })
 }
 
-#let thinline() = {
-  v(4pt)
+#let thinline(v-size: default-config.thin-line-space) = {
+  v(v-size * 0.3)
   line(
     length: 100%,
     stroke: (paint: black, dash: ("dot", 5pt, 5pt, 5pt)),
   )
-  v(4pt)
+  v(v-size * 0.7)
 }
 
-#let display-cv-info(info) = {
-  block(above: 0pt, below: 3pt, height: 5em, width: 100%)[
+#let display-cv-info(
+  info,
+  name-size: default-config.head-info-name-size,
+  other-size: default-config.head-info-other-size,
+  name-color: default-config.head-info-name-color,
+  other-color: default-config.head-info-other-color,
+) = {
+  block(above: 0pt, below: 3em, height: 5em, width: 100%)[
     #set align(center)
-    #set text(fill: black, weight: "bold", 2em)
+    #set text(fill: name-color, weight: "bold", name-size)
     #info.name
     #set align(center + horizon)
-    #set text(fill: black, weight: "regular", 0.5em)
-    #info.email
-    #info.wechat \
-    #info.github
-    #info.phone
+    #set text(fill: other-color, weight: "regular", other-size)
+    #box(
+      align(center)[
+        #info.email #info.wechat
+      ],
+    )
+    #linebreak()
+    #box(
+      align(center)[
+        #info.phone 
+      ],
+    )
   ]
 }
 
@@ -77,14 +87,26 @@
 }
 
 #let section-title(icon-path, content) = {
-  set text(1.1em, weight: 500, fill: black)
-  set pad(bottom: 0.1em)
-  icon-text-box(icon-path, content, size: 16pt, baseline: 2pt)
-  boldline()
+  block(
+    above: 2em,
+    below: 0.5em,
+    {
+      set text(weight: 500, fill: black)
+      icon-text-box(
+        icon-path,
+        content,
+        size: 1.3em,
+        baseline: 0.2em,
+        h-size: 0.5em,
+        icon-factor: 1,
+      )
+      v(0.4em)
+      boldline()
+    },
+  )
 }
 
 #let subsection-list(str-arr) = {
-  set text(1.1em, weight: 500, fill: black)
-  set pad(bottom: 0.1em)
+  set text(1.1em, weight: 400, fill: black)
   show-string-arr-one-line(str-arr)
 }
