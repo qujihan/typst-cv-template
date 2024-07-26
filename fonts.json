@@ -1,0 +1,8 @@
+{
+    "lora": [
+        "https://github.com/cyrealtype/Lora-Cyrillic/releases/download/v3.005/Lora-v3.005.zip"
+    ],
+    "Han-serif": [
+        "https://github.com/adobe-fonts/source-han-serif/releases/download/2.002R/09_SourceHanSerifSC.zip"
+    ]
+}
