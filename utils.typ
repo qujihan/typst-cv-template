@@ -53,11 +53,12 @@
   name-color: default-config.head-info-name-color,
   other-color: default-config.head-info-other-color,
 ) = {
-  block(above: 0pt, below: 3em, height: 5em, width: 100%)[
-    #set align(center)
+  let block-size = name-size + other-size * 2 + 1em
+  block(above: 0em, below: 2em, height: block-size, width: 100%)[
+    #set align(center + horizon)
     #set text(fill: name-color, weight: "bold", name-size)
     #info.name
-    #set align(center + horizon)
+    #set align(center + bottom)
     #set text(fill: other-color, weight: "regular", other-size)
     #box(
       align(center)[
