@@ -31,8 +31,8 @@
     above: 0pt,
     {
       v(v-size * 0.1)
-      line(length: 100%, stroke: (paint: black, thickness: 1.3pt))
-      v(v-size * 0.7)
+      line(length: 100%, stroke: (paint: black, thickness: 0.8pt))
+      v(v-size * 0.9)
     },
   )
 }
