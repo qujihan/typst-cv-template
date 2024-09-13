@@ -22,14 +22,14 @@ def load_metadata():
         config_path = os.path.join(os.path.dirname(__file__), matadata_file)
         if os.path.exists(config_path):
             exist_meta_config = True
-            with open(config_path, "r") as f:
+            with open(config_path, "r", encoding='utf-8') as f:
                 config.update(json.load(f))
 
         # check if metadata file exists in parent dir
         config_path = os.path.join(os.path.dirname(__file__), "..", matadata_file)
         if os.path.exists(config_path):
             exist_meta_config = True
-            with open(config_path, "r") as f:
+            with open(config_path, "r", encoding='utf-8') as f:
                 config.update(json.load(f))
 
         if not exist_meta_config:
